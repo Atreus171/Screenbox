@@ -157,7 +157,7 @@
                 </MenuFlyoutItem>
                 <MenuFlyoutItem AccessKey="{strings:KeyboardResources Key=MenuItemDiscKey}" Text="{strings:Resources Key=OpenDisc}">
                     <MenuFlyoutItem.Icon>
-                        <BitmapIcon UriSource="ms-appx:///Assets/DiscIcon.png" ShowAsMonochrome="False" />
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/DiscIcon.png" />
                     </MenuFlyoutItem.Icon>
                     <MenuFlyoutItem.Command>
                         <commands:PlayDiscCommand />
