@@ -25,6 +25,7 @@ public sealed partial class NotificationViewModel : ObservableRecipient,
     IRecipient<FailedToOpenFilesNotificationMessage>,
     IRecipient<FailedToAddFolderNotificationMessage>,
     IRecipient<DiscNotFoundNotificationMessage>,
+    IRecipient<AudioCdNotSupportedNotificationMessage>,
     IRecipient<FailedToInitializeNotificationMessage>,
     IRecipient<PlaylistCreatedNotificationMessage>,
     IRecipient<PlaylistDeletedNotificationMessage>,
@@ -81,6 +82,7 @@ public sealed partial class NotificationViewModel : ObservableRecipient,
         Messenger.Register<FailedToOpenFilesNotificationMessage>(this);
         Messenger.Register<FailedToAddFolderNotificationMessage>(this);
         Messenger.Register<DiscNotFoundNotificationMessage>(this);
+        Messenger.Register<AudioCdNotSupportedNotificationMessage>(this);
         Messenger.Register<FailedToInitializeNotificationMessage>(this);
         Messenger.Register<PlaylistCreatedNotificationMessage>(this);
         Messenger.Register<PlaylistDeletedNotificationMessage>(this);
@@ -260,6 +262,14 @@ public sealed partial class NotificationViewModel : ObservableRecipient,
     public void Receive(DiscNotFoundNotificationMessage message)
     {
         ShowErrorNotification(NotificationKind.DiscNotFound, message: null);
+    }
+
+    /// <summary>
+    /// Handles a notification that audio CD playback is not supported.
+    /// </summary>
+    public void Receive(AudioCdNotSupportedNotificationMessage message)
+    {
+        ShowErrorNotification(NotificationKind.AudioCdNotSupported, message: null);
     }
 
     /// <summary>

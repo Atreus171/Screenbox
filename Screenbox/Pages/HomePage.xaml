@@ -1,4 +1,4 @@
-<Page
+﻿<Page
     x:Class="Screenbox.Pages.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -155,13 +155,9 @@
                         <commands:OpenUrlCommand NextCommand="{x:Bind ViewModel.OpenUrlCommand}" />
                     </MenuFlyoutItem.Command>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem
-                    AccessKey="{strings:KeyboardResources Key=MenuItemDiscKey}"
-                    Text="{strings:Resources Key=OpenDisc}">
+                <MenuFlyoutItem AccessKey="{strings:KeyboardResources Key=MenuItemDiscKey}" Text="{strings:Resources Key=OpenDisc}">
                     <MenuFlyoutItem.Icon>
-                        <FontIcon
-                            FontFamily="{StaticResource ScreenboxSymbolThemeFontFamily}"
-                            Glyph="{StaticResource SystemMediaPlayerGlyph}" />
+                        <FontIcon FontFamily="{StaticResource ScreenboxSymbolThemeFontFamily}" Glyph="{StaticResource DiscGlyph}" />
                     </MenuFlyoutItem.Icon>
                     <MenuFlyoutItem.Command>
                         <commands:PlayDiscCommand />

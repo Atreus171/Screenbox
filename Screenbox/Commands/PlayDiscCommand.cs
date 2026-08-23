@@ -44,7 +44,10 @@ internal sealed partial class PlayDiscCommand : IRelayCommand
         IReadOnlyList<OpticalDisc> discs = await discService.FindDiscsAsync();
         if (discs.Count == 0)
         {
-            WeakReferenceMessenger.Default.Send(new DiscNotFoundNotificationMessage());
+            WeakReferenceMessenger.Default.Send(
+                await discService.HasAudioCdAsync()
+                    ? new AudioCdNotSupportedNotificationMessage()
+                    : new DiscNotFoundNotificationMessage());
             return;
         }
 
@@ -56,7 +59,7 @@ internal sealed partial class PlayDiscCommand : IRelayCommand
             foreach (DiscTitle title in disc.Titles)
             {
                 items.Add(new DiscSelectionItem(
-                    Strings.Resources.DiscTitleName(title.Number.ToString()),
+                    string.Format(Strings.Resources.DiscTitleName, title.Number),
                     subtitle,
                     title.Files));
             }

@@ -38,6 +38,32 @@ public sealed class DiscService : IDiscService
         return discs;
     }
 
+    public async Task<bool> HasAudioCdAsync()
+    {
+        try
+        {
+            foreach (StorageFolder device in await KnownFolders.RemovableDevices.GetFoldersAsync())
+            {
+                try
+                {
+                    IReadOnlyList<StorageFile> files = await device.GetFilesAsync();
+                    if (files.Any(f => f.FileType.Equals(".cda", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception ex) when (ex is UnauthorizedAccessException or COMException)
+                {
+                }
+            }
+        }
+        catch (Exception ex) when (ex is UnauthorizedAccessException or COMException)
+        {
+        }
+
+        return false;
+    }
+
     private static async Task<OpticalDisc?> TryGetDiscAsync(StorageFolder device)
     {
         StorageFolder? videoTs = await TryGetFolderAsync(device, VideoTsFolderName);

@@ -52,6 +52,8 @@
     <x:String x:Key="ImagePixelGlyph">&#xF30C;</x:String>
     <x:String x:Key="SystemMediaPlayerGlyph">&#xF0131;</x:String>
 
+    <x:String x:Key="DiscGlyph">&#xE93C;</x:String>
+
     <x:String x:Key="MoviesGlyph">&#xE8B2;</x:String>
     <x:String x:Key="MoviesOffGlyph">&#xF0022;</x:String>
     <x:String x:Key="AudioGlyph">&#xE8D6;</x:String>

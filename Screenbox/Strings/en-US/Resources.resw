@@ -522,6 +522,12 @@
   <data name="NoDiscFoundNotificationMessage" xml:space="preserve">
     <value>Insert a DVD or Blu-ray disc with unencrypted content, then try again.</value>
   </data>
+  <data name="AudioCdNotSupportedNotificationTitle" xml:space="preserve">
+    <value>Audio CD not supported</value>
+  </data>
+  <data name="AudioCdNotSupportedNotificationMessage" xml:space="preserve">
+    <value>Audio CD playback is not available on this device. Rip the tracks to audio files instead.</value>
+  </data>
   <data name="SongsCount_None" xml:space="preserve">
     <value>Empty</value>
   </data>
