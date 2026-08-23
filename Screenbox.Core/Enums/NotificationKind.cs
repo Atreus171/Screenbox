@@ -11,6 +11,8 @@ public enum NotificationKind
     InitializationFailed,
     FileOpenFailed,
     FolderAddFailed,
+    DiscNotFound,
+    AudioCdNotSupported,
     MediaLoadFailed,
     SubtitleLoadFailed,
     FrameSaveFailed,

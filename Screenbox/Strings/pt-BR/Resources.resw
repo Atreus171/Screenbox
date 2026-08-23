@@ -1156,4 +1156,25 @@
   <data name="Change" xml:space="preserve">
     <value>Alterar</value>
   </data>
+  <data name="OpenDisc" xml:space="preserve">
+    <value>Reproduzir disco</value>
+  </data>
+  <data name="DiscSelectionDialogTitle" xml:space="preserve">
+    <value>Reproduzir do disco</value>
+  </data>
+  <data name="DiscTitleName" xml:space="preserve">
+    <value>Título {0}</value>
+  </data>
+  <data name="NoDiscFoundNotificationTitle" xml:space="preserve">
+    <value>Nenhum disco encontrado</value>
+  </data>
+  <data name="NoDiscFoundNotificationMessage" xml:space="preserve">
+    <value>Insira um DVD ou Blu-ray com conteúdo não criptografado e tente novamente.</value>
+  </data>
+  <data name="AudioCdNotSupportedNotificationTitle" xml:space="preserve">
+    <value>CD de áudio não suportado</value>
+  </data>
+  <data name="AudioCdNotSupportedNotificationMessage" xml:space="preserve">
+    <value>A reprodução de CDs de áudio não está disponível neste dispositivo. Extraia as faixas para arquivos de áudio.</value>
+  </data>
 </root>

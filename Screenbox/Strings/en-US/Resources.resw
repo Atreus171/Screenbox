@@ -507,6 +507,27 @@
   <data name="OpenUrl" xml:space="preserve">
     <value>Open URL</value>
   </data>
+  <data name="OpenDisc" xml:space="preserve">
+    <value>Play disc</value>
+  </data>
+  <data name="DiscSelectionDialogTitle" xml:space="preserve">
+    <value>Play from disc</value>
+  </data>
+  <data name="DiscTitleName" xml:space="preserve">
+    <value>Title {0}</value>
+  </data>
+  <data name="NoDiscFoundNotificationTitle" xml:space="preserve">
+    <value>No disc found</value>
+  </data>
+  <data name="NoDiscFoundNotificationMessage" xml:space="preserve">
+    <value>Insert a DVD or Blu-ray disc with unencrypted content, then try again.</value>
+  </data>
+  <data name="AudioCdNotSupportedNotificationTitle" xml:space="preserve">
+    <value>Audio CD not supported</value>
+  </data>
+  <data name="AudioCdNotSupportedNotificationMessage" xml:space="preserve">
+    <value>Audio CD playback is not available on this device. Rip the tracks to audio files instead.</value>
+  </data>
   <data name="SongsCount_None" xml:space="preserve">
     <value>Empty</value>
   </data>
