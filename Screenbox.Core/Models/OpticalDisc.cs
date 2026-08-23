@@ -15,13 +15,13 @@ public sealed class OpticalDisc
     /// <summary>Gets the root folder of the disc.</summary>
     public StorageFolder Root { get; }
 
-    /// <summary>Gets the playable track files on the disc, ordered by playback position.</summary>
-    public IReadOnlyList<StorageFile> Tracks { get; }
+    /// <summary>Gets the playable titles on the disc, ordered by title number.</summary>
+    public IReadOnlyList<DiscTitle> Titles { get; }
 
-    public OpticalDisc(DiscType type, StorageFolder root, IReadOnlyList<StorageFile> tracks)
+    public OpticalDisc(DiscType type, StorageFolder root, IReadOnlyList<DiscTitle> titles)
     {
         Type = type;
         Root = root;
-        Tracks = tracks;
+        Titles = titles;
     }
 }

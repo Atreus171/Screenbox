@@ -510,6 +510,12 @@
   <data name="OpenDisc" xml:space="preserve">
     <value>Play disc</value>
   </data>
+  <data name="DiscSelectionDialogTitle" xml:space="preserve">
+    <value>Play from disc</value>
+  </data>
+  <data name="DiscTitleName" xml:space="preserve">
+    <value>Title {0}</value>
+  </data>
   <data name="NoDiscFoundNotificationTitle" xml:space="preserve">
     <value>No disc found</value>
   </data>

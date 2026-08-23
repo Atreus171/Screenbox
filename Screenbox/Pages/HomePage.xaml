@@ -157,10 +157,16 @@
                 </MenuFlyoutItem>
                 <MenuFlyoutItem
                     AccessKey="{strings:KeyboardResources Key=MenuItemDiscKey}"
-                    Command="{x:Bind ViewModel.PlayDiscCommand}"
-                    Icon="{ui:FontIcon FontFamily={StaticResource ScreenboxSymbolThemeFontFamily},
-                                       Glyph={StaticResource SystemMediaPlayerGlyph}}"
-                    Text="{strings:Resources Key=OpenDisc}" />
+                    Text="{strings:Resources Key=OpenDisc}">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon
+                            FontFamily="{StaticResource ScreenboxSymbolThemeFontFamily}"
+                            Glyph="{StaticResource SystemMediaPlayerGlyph}" />
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.Command>
+                        <commands:PlayDiscCommand />
+                    </MenuFlyoutItem.Command>
+                </MenuFlyoutItem>
             </MenuFlyout>
         </ResourceDictionary>
     </Page.Resources>

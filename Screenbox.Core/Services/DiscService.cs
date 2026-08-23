@@ -84,30 +84,45 @@ public sealed class DiscService : IDiscService
             parts.Add((part, file));
         }
 
-        // Part 0 holds menu content; movie content starts at part 1.
-        List<StorageFile> tracks = titleSets
-            .OrderBy(kv => kv.Key)
-            .SelectMany(kv => kv.Value.Where(p => p.Part > 0).OrderBy(p => p.Part))
-            .Select(p => p.File)
-            .ToList();
-
-        if (tracks.Count == 0 && vobs.Count > 0)
+        List<DiscTitle> titles = [];
+        foreach (KeyValuePair<int, List<(int Part, StorageFile File)>> kv in titleSets.OrderBy(kv => kv.Key))
         {
-            tracks = vobs.OrderBy(f => f.Name, StringComparer.OrdinalIgnoreCase).ToList();
+            // Part 0 holds menu content; movie content starts at part 1.
+            List<StorageFile> parts = kv.Value
+                .Where(p => p.Part > 0)
+                .OrderBy(p => p.Part)
+                .Select(p => p.File)
+                .ToList();
+
+            if (parts.Count > 0)
+            {
+                titles.Add(new DiscTitle(kv.Key, parts));
+            }
         }
 
-        return tracks.Count > 0 ? new OpticalDisc(DiscType.Dvd, device, tracks) : null;
+        if (titles.Count == 0 && vobs.Count > 0)
+        {
+            titles.Add(new DiscTitle(1, vobs.OrderBy(f => f.Name, StringComparer.OrdinalIgnoreCase).ToList()));
+        }
+
+        return titles.Count > 0 ? new OpticalDisc(DiscType.Dvd, device, titles) : null;
     }
 
     private static async Task<OpticalDisc?> TryCreateBluRayDiscAsync(StorageFolder device, StorageFolder stream)
     {
         IReadOnlyList<StorageFile> files = await stream.GetFilesAsync();
-        List<StorageFile> tracks = files
+        List<StorageFile> m2tsFiles = files
             .Where(f => f.FileType.Equals(".m2ts", StringComparison.OrdinalIgnoreCase))
             .OrderBy(f => f.Name, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
-        return tracks.Count > 0 ? new OpticalDisc(DiscType.BluRay, device, tracks) : null;
+        if (m2tsFiles.Count == 0) return null;
+
+        List<DiscTitle> titles = m2tsFiles
+            .Select((file, index) => new DiscTitle(index + 1, [file]))
+            .ToList();
+
+        return new OpticalDisc(DiscType.BluRay, device, titles);
     }
 
     private static async Task<StorageFolder?> TryGetFolderAsync(StorageFolder parent, string name)
