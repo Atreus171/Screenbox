@@ -44,10 +44,15 @@ internal sealed partial class PlayDiscCommand : IRelayCommand
         IReadOnlyList<OpticalDisc> discs = await discService.FindDiscsAsync();
         if (discs.Count == 0)
         {
-            WeakReferenceMessenger.Default.Send(
-                await discService.HasAudioCdAsync()
-                    ? new AudioCdNotSupportedNotificationMessage()
-                    : new DiscNotFoundNotificationMessage());
+            if (await discService.HasAudioCdAsync())
+            {
+                WeakReferenceMessenger.Default.Send(new AudioCdNotSupportedNotificationMessage());
+            }
+            else
+            {
+                WeakReferenceMessenger.Default.Send(new DiscNotFoundNotificationMessage());
+            }
+
             return;
         }
 
