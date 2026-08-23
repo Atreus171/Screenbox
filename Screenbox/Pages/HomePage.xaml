@@ -155,6 +155,12 @@
                         <commands:OpenUrlCommand NextCommand="{x:Bind ViewModel.OpenUrlCommand}" />
                     </MenuFlyoutItem.Command>
                 </MenuFlyoutItem>
+                <MenuFlyoutItem
+                    AccessKey="{strings:KeyboardResources Key=MenuItemDiscKey}"
+                    Command="{x:Bind ViewModel.PlayDiscCommand}"
+                    Icon="{ui:FontIcon FontFamily={StaticResource ScreenboxSymbolThemeFontFamily},
+                                       Glyph={StaticResource SystemMediaPlayerGlyph}}"
+                    Text="{strings:Resources Key=OpenDisc}" />
             </MenuFlyout>
         </ResourceDictionary>
     </Page.Resources>

@@ -517,6 +517,10 @@
     <value>U</value>
     <comment>{Range="A-Z"}{Limit=1}Access key for opening URLs. Must be unique with respect to every other MenuItem key in this file.</comment>
   </data>
+  <data name="MenuItemDiscKey" xml:space="preserve">
+    <value>D</value>
+    <comment>{Range="A-Z"}{Limit=1}Access key for playing an optical disc. Must be unique with respect to every other MenuItem key in this file.</comment>
+  </data>
   <data name="MenuItemPropertiesKey" xml:space="preserve">
     <value>P</value>
     <comment>{Range="A-Z"}{Limit=1}Access key for file properties. Must be unique with respect to every other MenuItem key in this file.</comment>

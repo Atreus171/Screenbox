@@ -24,6 +24,7 @@ public sealed partial class NotificationViewModel : ObservableRecipient,
     IRecipient<FailedToLoadSubtitleNotificationMessage>,
     IRecipient<FailedToOpenFilesNotificationMessage>,
     IRecipient<FailedToAddFolderNotificationMessage>,
+    IRecipient<DiscNotFoundNotificationMessage>,
     IRecipient<FailedToInitializeNotificationMessage>,
     IRecipient<PlaylistCreatedNotificationMessage>,
     IRecipient<PlaylistDeletedNotificationMessage>,
@@ -79,6 +80,7 @@ public sealed partial class NotificationViewModel : ObservableRecipient,
         Messenger.Register<FailedToLoadSubtitleNotificationMessage>(this);
         Messenger.Register<FailedToOpenFilesNotificationMessage>(this);
         Messenger.Register<FailedToAddFolderNotificationMessage>(this);
+        Messenger.Register<DiscNotFoundNotificationMessage>(this);
         Messenger.Register<FailedToInitializeNotificationMessage>(this);
         Messenger.Register<PlaylistCreatedNotificationMessage>(this);
         Messenger.Register<PlaylistDeletedNotificationMessage>(this);
@@ -250,6 +252,14 @@ public sealed partial class NotificationViewModel : ObservableRecipient,
     public void Receive(FailedToAddFolderNotificationMessage message)
     {
         ShowErrorNotification(NotificationKind.FolderAddFailed, message: message.Reason);
+    }
+
+    /// <summary>
+    /// Handles a notification that no playable optical disc was found.
+    /// </summary>
+    public void Receive(DiscNotFoundNotificationMessage message)
+    {
+        ShowErrorNotification(NotificationKind.DiscNotFound, message: null);
     }
 
     /// <summary>

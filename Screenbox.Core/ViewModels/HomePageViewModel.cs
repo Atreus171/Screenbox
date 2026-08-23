@@ -12,6 +12,7 @@ using CommunityToolkit.WinUI;
 using Screenbox.Core.Factories;
 using Screenbox.Core.Helpers;
 using Screenbox.Core.Messages;
+using Screenbox.Core.Models;
 using Screenbox.Core.Services;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -32,6 +33,7 @@ public sealed partial class HomePageViewModel : ObservableRecipient,
     private readonly MediaViewModelFactory _mediaFactory;
     private readonly IFilesService _filesService;
     private readonly ISettingsService _settingsService;
+    private readonly IDiscService _discService;
     private readonly DispatcherQueue _dispatcherQueue;
     private readonly DispatcherQueueTimer _changeDebounceTimer;
     private readonly Dictionary<string, string> _pathToMruMappings;
@@ -42,12 +44,14 @@ public sealed partial class HomePageViewModel : ObservableRecipient,
         MediaViewModelFactory mediaFactory,
         IFilesService filesService,
         ISettingsService settingsService,
+        IDiscService discService,
         ILogger<HomePageViewModel> logger)
     {
         Selection = selection;
         _mediaFactory = mediaFactory;
         _filesService = filesService;
         _settingsService = settingsService;
+        _discService = discService;
         _logger = logger;
         _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
         _changeDebounceTimer = _dispatcherQueue.CreateTimer();
@@ -296,6 +300,19 @@ public sealed partial class HomePageViewModel : ObservableRecipient,
         IStorageFile[] files = items.OfType<IStorageFile>().ToArray();
         if (files.Length == 0) return;
         Messenger.Send(new PlayMediaMessage(files));
+    }
+
+    [RelayCommand]
+    private async Task PlayDiscAsync()
+    {
+        IReadOnlyList<OpticalDisc> discs = await _discService.FindDiscsAsync();
+        if (discs.Count == 0)
+        {
+            Messenger.Send(new DiscNotFoundNotificationMessage());
+            return;
+        }
+
+        Messenger.Send(new PlayMediaMessage(discs[0].Tracks));
     }
 
     [RelayCommand(CanExecute = nameof(HasSelection))]
